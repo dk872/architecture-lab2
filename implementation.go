@@ -7,11 +7,12 @@ import (
 )
 
 func PrefixToLisp(input string) (string, error) {
-	if input == "" {
+	tokens := strings.Fields(input)
+
+	if len(tokens) == 0 {
 		return "", fmt.Errorf("invalid input: empty expression")
 	}
 
-	tokens := strings.Fields(input)
 	list := []string{}
 
 	for i := len(tokens) - 1; i >= 0; i-- {
