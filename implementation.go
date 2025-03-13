@@ -18,7 +18,7 @@ func PrefixToLisp(input string) (string, error) {
 		token := tokens[i]
 		if isValidOp(&token) {
 			if len(list) < 2 {
-				return "", fmt.Errorf("Incorrect input: invalid expression")
+				return "", fmt.Errorf("incorrect input: invalid expression")
 			}
 			str1 := list[len(list)-1]
 			str2 := list[len(list)-2]
@@ -27,7 +27,7 @@ func PrefixToLisp(input string) (string, error) {
 			list = append(list, str)
 		} else {
 			if !isNum(token) {
-				return "", fmt.Errorf("Incorrect input: invalid character in expression")
+				return "", fmt.Errorf("incorrect input: invalid character in expression")
 			}
 			list = append(list, token)
 		}
@@ -35,7 +35,7 @@ func PrefixToLisp(input string) (string, error) {
 	}
 
 	if len(list) != 1 {
-		return "", fmt.Errorf("Incorrect input: invalid expression")
+		return "", fmt.Errorf("incorrect input: invalid expression")
 	}
 	return list[0], nil
 }
