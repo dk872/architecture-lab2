@@ -1,5 +1,5 @@
 // TODO: Переіменуйте на власний модуль.
-module github.com/dk872/architecture-lab-2
+module github.com/dk872/architecture-lab2
 
 go 1.23
 
