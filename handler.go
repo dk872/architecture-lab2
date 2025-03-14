@@ -1,12 +1,37 @@
 package lab2
 
-// ComputeHandler should be constructed with input io.Reader and output io.Writer.
-// Its Compute() method should read the expression from input and write the computed result to the output.
+import (
+	"errors"
+	"fmt"
+	"io"
+	"strings"
+)
+
 type ComputeHandler struct {
-	// TODO: Add necessary fields.
+	Input  io.Reader
+	Output io.Writer
 }
 
 func (ch *ComputeHandler) Compute() error {
-	// TODO: Implement.
+	data, err := io.ReadAll(ch.Input)
+	if err != nil {
+		return fmt.Errorf("failed to read input: %w", err)
+	}
+
+	expression := strings.TrimSpace(string(data))
+	if expression == "" {
+		return errors.New("empty expression")
+	}
+
+	result, err := PrefixToLisp(expression)
+	if err != nil {
+		return fmt.Errorf("syntax error: %w", err)
+	}
+
+	_, err = ch.Output.Write([]byte(result + "\n"))
+	if err != nil {
+		return fmt.Errorf("failed to write output: %w", err)
+	}
+
 	return nil
 }

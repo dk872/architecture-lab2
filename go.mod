@@ -1,7 +1,7 @@
 // TODO: Переіменуйте на власний модуль.
 module github.com/dk872/architecture-lab2
 
-go 1.23
+go 1.22
 
 // TODO: Змініть, якщо вам потрібно використовувати іншу бібліотеку.
 require github.com/stretchr/testify v1.8.4
