@@ -24,15 +24,17 @@ func TestPrefixToLisp(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		res, err := PrefixToLisp(tt.input)
+		t.Run(tt.name, func(t *testing.T) {
+			res, err := PrefixToLisp(tt.input)
 
-		if tt.errMsg == "" {
-			require.Nil(t, err, "Unexpected error for input: %q", tt.input)
-			assert.Equal(t, tt.expected, res, "expected: %q, got: %q", tt.expected, res)
-		} else {
-			require.Error(t, err, "Expected error for input: %q", tt.input)
-			assert.EqualError(t, err, tt.errMsg, "expected: %q, got: %q", tt.errMsg, err)
-		}
+			if tt.errMsg == "" {
+				require.Nil(t, err, "Unexpected error for input: %q", tt.input)
+				assert.Equal(t, tt.expected, res, "expected: %q, got: %q", tt.expected, res)
+			} else {
+				require.Error(t, err, "Expected error for input: %q", tt.input)
+				assert.EqualError(t, err, tt.errMsg, "expected: %q, got: %q", tt.errMsg, err)
+			}
+		})
 	}
 }
 
